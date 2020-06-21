@@ -1062,10 +1062,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_file_transfer_ngx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ionic-native/file-transfer/ngx */ "./node_modules/@ionic-native/file-transfer/__ivy_ngcc__/ngx/index.js");
 /* harmony import */ var _ionic_native_email_composer_ngx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ionic-native/email-composer/ngx */ "./node_modules/@ionic-native/email-composer/__ivy_ngcc__/ngx/index.js");
 /* harmony import */ var _ionic_native_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ionic-native/in-app-browser/ngx */ "./node_modules/@ionic-native/in-app-browser/__ivy_ngcc__/ngx/index.js");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _pages_filters_filters_page__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./pages/filters/filters.page */ "./src/app/pages/filters/filters.page.ts");
-/* harmony import */ var _pages_notifications_notifications_page__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./pages/notifications/notifications.page */ "./src/app/pages/notifications/notifications.page.ts");
+/* harmony import */ var _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ionic-native/android-permissions/ngx */ "./node_modules/@ionic-native/android-permissions/__ivy_ngcc__/ngx/index.js");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _pages_filters_filters_page__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./pages/filters/filters.page */ "./src/app/pages/filters/filters.page.ts");
+/* harmony import */ var _pages_notifications_notifications_page__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./pages/notifications/notifications.page */ "./src/app/pages/notifications/notifications.page.ts");
+
 
 
 
@@ -1090,13 +1092,13 @@ var AppModule = /** @class */ (function () {
     }
     AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-            declarations: [_app_component__WEBPACK_IMPORTED_MODULE_16__["AppComponent"], _pages_filters_filters_page__WEBPACK_IMPORTED_MODULE_17__["FiltersPage"], _pages_notifications_notifications_page__WEBPACK_IMPORTED_MODULE_18__["NotificationsPage"]],
-            entryComponents: [_pages_filters_filters_page__WEBPACK_IMPORTED_MODULE_17__["FiltersPage"], _pages_notifications_notifications_page__WEBPACK_IMPORTED_MODULE_18__["NotificationsPage"]],
+            declarations: [_app_component__WEBPACK_IMPORTED_MODULE_17__["AppComponent"], _pages_filters_filters_page__WEBPACK_IMPORTED_MODULE_18__["FiltersPage"], _pages_notifications_notifications_page__WEBPACK_IMPORTED_MODULE_19__["NotificationsPage"]],
+            entryComponents: [_pages_filters_filters_page__WEBPACK_IMPORTED_MODULE_18__["FiltersPage"], _pages_notifications_notifications_page__WEBPACK_IMPORTED_MODULE_19__["NotificationsPage"]],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"],
                 _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(),
                 _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_15__["AppRoutingModule"],
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_16__["AppRoutingModule"],
                 _ionic_storage__WEBPACK_IMPORTED_MODULE_8__["IonicStorageModule"].forRoot(),
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"]
             ],
@@ -1109,8 +1111,9 @@ var AppModule = /** @class */ (function () {
                 _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_11__["Camera"],
                 _ionic_native_file_transfer_ngx__WEBPACK_IMPORTED_MODULE_12__["FileTransfer"],
                 _ionic_native_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_14__["InAppBrowser"],
+                _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_15__["AndroidPermissions"]
             ],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_16__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_17__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;

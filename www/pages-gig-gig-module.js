@@ -373,6 +373,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var peerjs__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! peerjs */ "./node_modules/peerjs/dist/peerjs.min.js");
 /* harmony import */ var peerjs__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(peerjs__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ionic-native/android-permissions/ngx */ "./node_modules/@ionic-native/android-permissions/__ivy_ngcc__/ngx/index.js");
+
 
 
 
@@ -386,7 +388,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var GigPage = /** @class */ (function () {
-    function GigPage(authenticationService, gigService, route, alertCtrl, streamService, messageService, modalController, loadingCtrl, ngZone) {
+    function GigPage(authenticationService, gigService, route, alertCtrl, streamService, messageService, modalController, loadingCtrl, ngZone, permissions) {
         var _this = this;
         this.authenticationService = authenticationService;
         this.gigService = gigService;
@@ -397,6 +399,7 @@ var GigPage = /** @class */ (function () {
         this.modalController = modalController;
         this.loadingCtrl = loadingCtrl;
         this.ngZone = ngZone;
+        this.permissions = permissions;
         var gigId = this.route.snapshot.params['id'];
         this.loading = true;
         this.gig = { id: gigId };
@@ -750,29 +753,11 @@ var GigPage = /** @class */ (function () {
             _this.peerId = id;
             _this.streamService.createParticipant(_this.stream.id, id).then(function () {
             });
-            navigator.getUserMedia({ audio: true, video: true }, function (stream) {
-                var e_1, _a;
-                _this.videoStream = stream;
-                var videoElement = document.querySelector('#video-stream');
-                videoElement.srcObject = stream;
-                var participants = _this.stream.participants;
-                try {
-                    for (var participants_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__values"])(participants), participants_1_1 = participants_1.next(); !participants_1_1.done; participants_1_1 = participants_1.next()) {
-                        var participant = participants_1_1.value;
-                        if (participant.user_id !== _this.user.id) {
-                            _this.peer.call(participant.peer_id, _this.videoStream);
-                        }
-                    }
-                }
-                catch (e_1_1) { e_1 = { error: e_1_1 }; }
-                finally {
-                    try {
-                        if (participants_1_1 && !participants_1_1.done && (_a = participants_1.return)) _a.call(participants_1);
-                    }
-                    finally { if (e_1) throw e_1.error; }
-                }
-            }, function (error) {
-                alert("There was an error streaming your camera or microphone");
+            _this.permissions.checkPermission(_this.permissions.PERMISSION.CAMERA).then(function (result) {
+                _this.getUserMedia();
+            }, function (err) {
+                _this.permissions.requestPermission(_this.permissions.PERMISSION.CAMERA);
+                _this.getUserMedia();
             });
         });
         this.peer.on('call', function (call) {
@@ -789,6 +774,33 @@ var GigPage = /** @class */ (function () {
                     }
                 }, 1000);
             });
+        });
+    };
+    GigPage.prototype.getUserMedia = function () {
+        var _this = this;
+        navigator.getUserMedia({ audio: true, video: true }, function (stream) {
+            var e_1, _a;
+            _this.videoStream = stream;
+            var videoElement = document.querySelector('#video-stream');
+            videoElement.srcObject = stream;
+            var participants = _this.stream.participants;
+            try {
+                for (var participants_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__values"])(participants), participants_1_1 = participants_1.next(); !participants_1_1.done; participants_1_1 = participants_1.next()) {
+                    var participant = participants_1_1.value;
+                    if (participant.user_id !== _this.user.id) {
+                        _this.peer.call(participant.peer_id, _this.videoStream);
+                    }
+                }
+            }
+            catch (e_1_1) { e_1 = { error: e_1_1 }; }
+            finally {
+                try {
+                    if (participants_1_1 && !participants_1_1.done && (_a = participants_1.return)) _a.call(participants_1);
+                }
+                finally { if (e_1) throw e_1.error; }
+            }
+        }, function (error) {
+            alert("There was an error streaming your camera or microphone");
         });
     };
     GigPage.prototype.saveStreamDuration = function () {
@@ -995,7 +1007,8 @@ var GigPage = /** @class */ (function () {
         { type: _services_message_message_service__WEBPACK_IMPORTED_MODULE_7__["MessageService"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"] },
-        { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"] }
+        { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"] },
+        { type: _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_12__["AndroidPermissions"] }
     ]; };
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('messagesbox')

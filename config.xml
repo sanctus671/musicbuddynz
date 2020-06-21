@@ -38,6 +38,18 @@
         <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/application" xmlns:android="http://schemas.android.com/apk/res/android">
             <application android:networkSecurityConfig="@xml/network_security_config" />
         </edit-config>
+        
+        
+        <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/application" xmlns:android="http://schemas.android.com/apk/res/android">
+            <uses-feature android:name="android.hardware.camera" />
+            <uses-feature android:name="android.hardware.camera.autofocus" />
+            <uses-feature android:name="android.hardware.camera2.full" />
+            <uses-feature android:name="android.hardware.camera2.autofocus" />
+            <uses-permission android:name="android.permission.CAMERA" />
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.webkit.PermissionRequest" />
+        </edit-config>        
+        
         <resource-file src="resources/android/xml/network_security_config.xml" target="res/xml/network_security_config.xml" />
         <resource-file src="resources/android/icon/values/launcher_background.xml" target="res/values/launcher_background.xml" />
         <resource-file src="resources/android/icon/mipmap-anydpi-v26/launcher.xml" target="res/mipmap-anydpi-v26/launcher.xml" />
@@ -137,7 +149,7 @@
     <splash src="resources/splash.png" />
     <engine name="android" spec="~6.3.0" />
      
-    
+    <plugin name="cordova-plugin-android-permissions" spec="1.0.2" />
     
     <plugin name="cordova-plugin-whitelist" spec="1.3.3" />
     <plugin name="cordova-plugin-statusbar" spec="2.4.2" />
@@ -156,7 +168,9 @@
     
     <plugin name="onesignal-cordova-plugin" spec="2.3.3" />
     <gap:plugin spec="https://github.com/sanctus671/cordova-plugin-stripe.git#v2" /> 
-   
+    
+    
+    
     
     
 </widget>
