@@ -754,10 +754,10 @@ var GigPage = /** @class */ (function () {
             _this.streamService.createParticipant(_this.stream.id, id).then(function () {
             });
             _this.permissions.checkPermission(_this.permissions.PERMISSION.CAMERA).then(function (result) {
-                alert("permission allowed");
+                //alert("permission allowed");
                 _this.getUserMedia();
             }, function (err) {
-                alert("permissions not allowed");
+                //alert("permissions not allowed");
                 _this.permissions.requestPermission(_this.permissions.PERMISSION.CAMERA);
                 _this.getUserMedia();
             });
@@ -781,11 +781,13 @@ var GigPage = /** @class */ (function () {
     };
     GigPage.prototype.getUserMedia = function () {
         var _this = this;
-        navigator.getUserMedia({ audio: true, video: true }, function (stream) {
+        navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function (stream) {
             var e_1, _a;
+            alert("successfully got stream");
             _this.videoStream = stream;
             var videoElement = document.querySelector('#video-stream');
             videoElement.srcObject = stream;
+            alert("appending to video element");
             var participants = _this.stream.participants;
             try {
                 for (var participants_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__values"])(participants), participants_1_1 = participants_1.next(); !participants_1_1.done; participants_1_1 = participants_1.next()) {
@@ -802,7 +804,7 @@ var GigPage = /** @class */ (function () {
                 }
                 finally { if (e_1) throw e_1.error; }
             }
-        }, function (error) {
+        }).catch(function (error) {
             alert("There was an error streaming your camera or microphone");
         });
     };
