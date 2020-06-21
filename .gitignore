@@ -1,0 +1,10 @@
+/e2e
+/src
+/node_modules
+/plugins
+/browserslist
+/karma.conf.js
+/tsconfig.app.json
+/tsconfig.json
+/tsconfig.spec.json
+/tslint.json
