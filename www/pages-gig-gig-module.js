@@ -754,11 +754,14 @@ var GigPage = /** @class */ (function () {
             _this.streamService.createParticipant(_this.stream.id, id).then(function () {
             });
             _this.permissions.checkPermission(_this.permissions.PERMISSION.CAMERA).then(function (result) {
+                alert("permission allowed");
                 _this.getUserMedia();
             }, function (err) {
+                alert("permissions not allowed");
                 _this.permissions.requestPermission(_this.permissions.PERMISSION.CAMERA);
                 _this.getUserMedia();
             });
+            _this.permissions.requestPermissions([_this.permissions.PERMISSION.CAMERA]);
         });
         this.peer.on('call', function (call) {
             call.answer(_this.videoStream);
