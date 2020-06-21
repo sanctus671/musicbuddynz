@@ -970,7 +970,7 @@ var AppComponent = /** @class */ (function () {
         this.platform.ready().then(function () {
             _this.statusBar.styleDefault();
             if (_this.platform.is("android")) {
-                _this.statusBar.backgroundColorByHexString("#37ae64");
+                _this.statusBar.backgroundColorByHexString("#000000");
                 _this.statusBar.styleLightContent();
             }
             else {

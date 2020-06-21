@@ -386,7 +386,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var GigPage = /** @class */ (function () {
-    function GigPage(authenticationService, gigService, route, alertCtrl, streamService, messageService, modalController, loadingCtrl) {
+    function GigPage(authenticationService, gigService, route, alertCtrl, streamService, messageService, modalController, loadingCtrl, ngZone) {
         var _this = this;
         this.authenticationService = authenticationService;
         this.gigService = gigService;
@@ -396,6 +396,7 @@ var GigPage = /** @class */ (function () {
         this.messageService = messageService;
         this.modalController = modalController;
         this.loadingCtrl = loadingCtrl;
+        this.ngZone = ngZone;
         var gigId = this.route.snapshot.params['id'];
         this.gig = { id: gigId };
         this.getGig();
@@ -431,22 +432,24 @@ var GigPage = /** @class */ (function () {
     GigPage.prototype.getGig = function () {
         var _this = this;
         this.gigService.getGig(this.gig.id).then(function (data) {
-            if (data.date_required) {
-                var localeOffset = (new Date().getTimezoneOffset());
-                data.date_required = moment__WEBPACK_IMPORTED_MODULE_10__(data.date_required).add(localeOffset, 'm').format("YYYY-MM-DD HH:mm:ss");
-                console.log(_this.gig);
-            }
-            _this.gig = data;
-            if (_this.gig.status === "live") {
-                _this.getStream();
-                _this.setupMessageBox();
-            }
-            if (_this.gig.status === "upcoming") {
-                _this.setTimeToLive();
-                _this.timeToLiveInterval = setInterval(function () {
+            _this.ngZone.run(function () {
+                if (data.date_required) {
+                    var localeOffset = (new Date().getTimezoneOffset());
+                    data.date_required = moment__WEBPACK_IMPORTED_MODULE_10__(data.date_required).add(localeOffset, 'm').format("YYYY-MM-DD HH:mm:ss");
+                    console.log(_this.gig);
+                }
+                _this.gig = data;
+                if (_this.gig.status === "live") {
+                    _this.getStream();
+                    _this.setupMessageBox();
+                }
+                if (_this.gig.status === "upcoming") {
                     _this.setTimeToLive();
-                }, 1000);
-            }
+                    _this.timeToLiveInterval = setInterval(function () {
+                        _this.setTimeToLive();
+                    }, 1000);
+                }
+            });
         });
     };
     GigPage.prototype.confirmBooking = function () {
@@ -989,7 +992,8 @@ var GigPage = /** @class */ (function () {
         { type: _services_stream_stream_service__WEBPACK_IMPORTED_MODULE_6__["StreamService"] },
         { type: _services_message_message_service__WEBPACK_IMPORTED_MODULE_7__["MessageService"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"] },
-        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"] }
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"] },
+        { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"] }
     ]; };
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('messagesbox')
