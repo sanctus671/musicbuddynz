@@ -5,6 +5,9 @@
     <color name="grayColor">#EEEEEE</color>
     <color name="transaprentColor">#00000000</color>
     <style name="mbTheme" parent="@android:style/Theme.Material.NoActionBar">
+        
+        <item name="android:windowBackground">@color/primaryColorDark</item>
+        
         <!-- on startup the background and app-name is shown, we use the same color to see just background.. -->
         <item name="android:textColorPrimary">@color/primaryColorDark</item>
         
@@ -19,7 +22,7 @@
         <item name="android:timePickerDialogTheme">@style/MyPickerDialogTheme</item>
     </style>
 
-    <style name="MyPickerDialogTheme" parent="android:Theme.Material.Light.Dialog">
+    <style name="MyPickerDialogTheme" parent="android:Theme.Material.Dialog">
         <item name="android:colorAccent">@color/primaryColor</item>
     </style>
     
