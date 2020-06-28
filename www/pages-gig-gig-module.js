@@ -286,7 +286,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var GigPage = /** @class */ (function () {
-    function GigPage(authenticationService, gigService, route, alertCtrl, streamService, messageService, modalController, loadingCtrl, ngZone, permissions) {
+    function GigPage(authenticationService, gigService, route, alertCtrl, streamService, messageService, modalController, loadingCtrl, ngZone, androidPermissions, platform) {
         var _this = this;
         this.authenticationService = authenticationService;
         this.gigService = gigService;
@@ -297,7 +297,8 @@ var GigPage = /** @class */ (function () {
         this.modalController = modalController;
         this.loadingCtrl = loadingCtrl;
         this.ngZone = ngZone;
-        this.permissions = permissions;
+        this.androidPermissions = androidPermissions;
+        this.platform = platform;
         var gigId = this.route.snapshot.params['id'];
         this.loading = true;
         this.gig = { id: gigId };
@@ -646,15 +647,19 @@ var GigPage = /** @class */ (function () {
     };
     GigPage.prototype.joinStream = function () {
         var _this = this;
-        this.permissions.checkPermission(this.permissions.PERMISSION.CAMERA).then(function (result) {
-            //alert("permission allowed");
-            _this.getUserMedia();
-        }, function (err) {
-            _this.permissions.requestPermission(_this.permissions.PERMISSION.CAMERA);
-            alert("permissions not allowed");
-            _this.getUserMedia();
-        });
-        this.permissions.requestPermissions([this.permissions.PERMISSION.CAMERA]);
+        if (this.platform.is('cordova')) {
+            this.platform.ready().then(function () {
+                _this.androidPermissions.checkPermission(_this.androidPermissions.PERMISSION.CAMERA).then(function (result) {
+                    alert("permission allowed");
+                    _this.getUserMedia();
+                }, function (err) {
+                    _this.androidPermissions.requestPermission(_this.androidPermissions.PERMISSION.CAMERA);
+                    alert("permissions not allowed");
+                    _this.getUserMedia();
+                });
+                _this.androidPermissions.requestPermissions([_this.androidPermissions.PERMISSION.CAMERA]);
+            });
+        }
         /*
         
         this.peer = new Peer();
@@ -712,7 +717,7 @@ var GigPage = /** @class */ (function () {
     };
     GigPage.prototype.getUserMedia = function () {
         var _this = this;
-        navigator.getUserMedia({ audio: true, video: true }, function (stream) {
+        navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function (stream) {
             var e_1, _a;
             _this.videoStream = stream;
             var videoElement = document.querySelector('#video-stream');
@@ -733,7 +738,7 @@ var GigPage = /** @class */ (function () {
                 }
                 finally { if (e_1) throw e_1.error; }
             }
-        }, function (error) {
+        }).catch(function (error) {
             alert(error);
             alert(JSON.stringify(error));
             alert("There was an error streaming your camera or microphone");
@@ -944,7 +949,8 @@ var GigPage = /** @class */ (function () {
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"] },
         { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"] },
-        { type: _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_11__["AndroidPermissions"] }
+        { type: _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_11__["AndroidPermissions"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"] }
     ]; };
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('messagesbox')
