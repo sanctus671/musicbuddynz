@@ -41,7 +41,7 @@
         
    
         
-        <edit-config file="AndroidManifest.xml" target="/manifest/uses-permission" mode="merge" xmlns:android="http://schemas.android.com/apk/res/android">
+        <config-file platform="android" parent="/manifest" mode="merge">
             <uses-permission android:name="android.permission.CAMERA" />
             <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
             <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -51,7 +51,7 @@
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
             <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
             <uses-permission android:name="android.permission.INTERNET" />
-        </edit-config>           
+        </config-file>           
           
            
              
