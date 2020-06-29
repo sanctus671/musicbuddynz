@@ -131,6 +131,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic-native/camera/ngx */ "./node_modules/@ionic-native/camera/__ivy_ngcc__/ngx/index.js");
 /* harmony import */ var _ionic_native_file_transfer_ngx___WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic-native/file-transfer/ngx/ */ "./node_modules/@ionic-native/file-transfer/__ivy_ngcc__/ngx/index.js");
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_10__);
+
 
 
 
@@ -172,6 +175,9 @@ var SignupPage = /** @class */ (function () {
         if (!this.user.tos) {
             this.user.loading = false;
             this.user.error = "Please accept the Terms and Conditions";
+        }
+        if (this.user.dob) {
+            this.user.dob = moment__WEBPACK_IMPORTED_MODULE_10__(this.user.dob).format("YYYY-MM-DD HH:mm:ss");
         }
         //alert("Registering... Press ok to continue");
         this.authService.register(this.user).then(function () {
