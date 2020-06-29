@@ -717,7 +717,7 @@ var GigPage = /** @class */ (function () {
     };
     GigPage.prototype.getUserMedia = function () {
         var _this = this;
-        navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function (stream) {
+        navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
             var e_1, _a;
             _this.videoStream = stream;
             var videoElement = document.querySelector('#video-stream');
