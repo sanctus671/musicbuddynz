@@ -33,26 +33,20 @@
     <preference name="SplashScreenBackgroundColor" value="#000000" />
     <preference name="AndroidLaunchMode" value="singleTask" />
     <platform name="android">
-        <allow-intent href="market:*" />        
-   
-        
-        <edit-config file="AndroidManifest.xml" target="/manifest" mode="merge">
+        <allow-intent href="market:*" />
+        <edit-config file="AndroidManifest.xml" mode="add" target="/manifest">
             <uses-permission android:name="android.permission.CAMERA" />
             <uses-permission android:name="android.permission.INTERNET" />
             <uses-permission android:name="android.webkit.PermissionRequest" />
             <uses-feature android:name="android.hardware.camera" />
             <uses-feature android:name="android.hardware.camera.autofocus" />
             <uses-feature android:name="android.hardware.camera2.full" />
-            <uses-feature android:name="android.hardware.camera2.autofocus" />            
-        </edit-config> 
-        
-        
+            <uses-feature android:name="android.hardware.camera2.autofocus" />
+        </edit-config>
         <preference name="loadUrlTimeoutValue" value="700000" />
         <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/application" xmlns:android="http://schemas.android.com/apk/res/android">
             <application android:networkSecurityConfig="@xml/network_security_config" />
         </edit-config>
-                
-        
         <resource-file src="resources/android/xml/network_security_config.xml" target="res/xml/network_security_config.xml" />
         <resource-file src="resources/android/icon/values/launcher_background.xml" target="res/values/launcher_background.xml" />
         <resource-file src="resources/android/icon/mipmap-anydpi-v26/launcher.xml" target="res/mipmap-anydpi-v26/launcher.xml" />
@@ -74,10 +68,6 @@
         <resource-file src="resources/android/icon/mipmap-xxxhdpi/launcher_round.png" target="res/mipmap-xxxhdpi-v4/launcher_round.png" />
         <resource-file src="resources/android/icon/mipmap-xxxhdpi/launcher_foreground.png" target="res/mipmap-xxxhdpi-v4/launcher_foreground.png" />
         <resource-file src="resources/android/styles.xml" target="res/values/styles.xml" />
-        
-        
-        
-        
     </platform>
     <splash density="port-ldpi" platform="android" src="resources/android/splash/splash-port-ldpi.png" />
     <splash density="port-mdpi" platform="android" src="resources/android/splash/splash-port-mdpi.png" />
@@ -106,9 +96,7 @@
         </edit-config>
         <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
             <string>Take pictures for your profile</string>
-        </edit-config>        
-    
-        
+        </edit-config>
         <icon height="1024" src="resources/ios/icon/icon-1024.png" width="1024" />
         <icon height="29" src="resources/ios/icon/icon-small.png" width="29" />
         <icon height="58" src="resources/ios/icon/icon-small@2x.png" width="58" />
@@ -129,9 +117,7 @@
         <icon height="152" src="resources/ios/icon/icon-76@2x.png" width="152" />
         <icon height="167" src="resources/ios/icon/icon-167.png" width="167" />
         <icon height="167" src="resources/ios/icon/icon-83.5@2x.png" width="167" />
-		
-	<plugin name="onesignal-cordova-plugin" spec="2.7.0" />
-		
+        <plugin name="onesignal-cordova-plugin" spec="2.7.0" />
     </platform>
     <splash height="480" platform="ios" src="resources/ios/splash/Default~iphone.png" width="320" />
     <splash height="960" platform="ios" src="resources/ios/splash/Default@2x~iphone.png" width="640" />
@@ -150,10 +136,7 @@
     <splash platform="ios" src="resources/ios/splash/Default@2x~ipad~comany.png" />
     <icon src="resources/icon.png" />
     <splash src="resources/splash.png" />
-    <engine name="android" spec="7.1.1" />
-     
     <plugin name="cordova-plugin-android-permissions" spec="1.0.2" />
-    
     <plugin name="cordova-plugin-whitelist" spec="1.3.3" />
     <plugin name="cordova-plugin-statusbar" spec="2.4.2" />
     <plugin name="cordova-plugin-device" spec="2.0.2" />
@@ -168,12 +151,7 @@
     <plugin name="cordova-plugin-file" spec="^6.0.2" />
     <gap:plugin spec="https://github.com/hypery2k/cordova-email-plugin#master" />
     <plugin name="cordova-plugin-inappbrowser" spec="^3.1.0" />
-    
     <plugin name="onesignal-cordova-plugin" spec="2.3.3" />
-    <gap:plugin spec="https://github.com/sanctus671/cordova-plugin-stripe.git#v2" /> 
-    
-    
-    
-    
-    
+    <gap:plugin spec="https://github.com/sanctus671/cordova-plugin-stripe.git#v2" />
+    <engine name="android" spec="7.1.1" />
 </widget>
