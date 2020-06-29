@@ -649,15 +649,16 @@ var GigPage = /** @class */ (function () {
         var _this = this;
         if (this.platform.is('cordova')) {
             this.platform.ready().then(function () {
+                var permissionList = [_this.androidPermissions.PERMISSION.CAMERA, _this.androidPermissions.PERMISSION.RECORD_AUDIO, _this.androidPermissions.PERMISSION.MODIFY_AUDIO_SETTINGS];
                 _this.androidPermissions.checkPermission(_this.androidPermissions.PERMISSION.CAMERA).then(function (result) {
                     alert("permission allowed");
                     _this.getUserMedia();
                 }, function (err) {
-                    _this.androidPermissions.requestPermission(_this.androidPermissions.PERMISSION.CAMERA);
+                    _this.androidPermissions.requestPermissions(permissionList);
                     alert("permissions not allowed");
                     _this.getUserMedia();
                 });
-                _this.androidPermissions.requestPermissions([_this.androidPermissions.PERMISSION.CAMERA]);
+                _this.androidPermissions.requestPermissions(permissionList);
             });
         }
         /*
