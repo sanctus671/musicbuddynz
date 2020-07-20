@@ -41,6 +41,7 @@
     "moment": "^2.26.0",
     "onesignal-cordova-plugin": "^2.9.1",
     "peerjs": "^1.2.0",
+    "pusher-js": "^6.0.3",
     "rxjs": "~6.5.1",
     "tslib": "^1.10.0",
     "webrtc-adapter": "^7.6.3",
